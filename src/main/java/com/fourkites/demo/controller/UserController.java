@@ -1,7 +1,9 @@
 package com.fourkites.demo.controller;
 
 
+import com.fourkites.demo.entity.User;
 import com.fourkites.demo.service.UserService;
+import io.swagger.v3.oas.annotations.headers.Header;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +19,18 @@ public class UserController {
     }
 
     @GetMapping
-    public List<String> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public String getSpecificUser(@PathVariable String id) {
+    public User getSpecificUser(@PathVariable String id) {
         return userService.getSpecificUser(id);
+    }
+
+    @PostMapping
+    public User addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
 
     @DeleteMapping("/{id}")
